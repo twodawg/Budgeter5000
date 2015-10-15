@@ -1,4 +1,4 @@
-﻿<prism:VisualStateAwarePage
+﻿<Page
     x:Class="Budgeter5000.Views.UserInputPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -64,4 +64,4 @@
                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </Grid>
     </Grid>
-</prism:VisualStateAwarePage>
+</Page>
