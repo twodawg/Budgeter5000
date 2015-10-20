@@ -42,9 +42,14 @@
   <ItemGroup>
     <Compile Include="ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AccountService.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Service\" />
+    <ProjectReference Include="..\Budget5000.Infrastructure\Budget5000.Infrastructure.csproj">
+      <Project>{e1449fc4-382f-4d0b-bb62-8a07d56b2207}</Project>
+      <Name>Budget5000.Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

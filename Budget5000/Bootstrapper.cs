@@ -3,10 +3,6 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Modularity;
 using Prism.Unity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Budget5000
@@ -40,7 +36,7 @@ namespace Budget5000
         {
             Type TransactionFormType = typeof(TransactionFormModule);
             ModuleCatalog.AddModule(new ModuleInfo(TransactionFormType.Name, TransactionFormType.AssemblyQualifiedName));
-            
+
         }
     }
 }
