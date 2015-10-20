@@ -23,7 +23,11 @@ namespace Budget5000.TransactionForm
         }
         public void Initialize()
         {
-            _RegionManager.RegisterViewWithRegion(RegionNames.MainContentRegion, () => _Container.Resolve<RegisterView>());
+            _RegionManager.RegisterViewWithRegion(RegionNames.MainContentRegion, 
+                () => _Container.Resolve<RegisterView>());
+
+            _RegionManager.RegisterViewWithRegion(RegionNames.MainNavigationRegion,
+                () => _Container.Resolve<RegisterNavigationView>());
         }
 
     }
