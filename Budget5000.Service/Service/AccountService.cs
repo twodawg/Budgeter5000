@@ -1,9 +1,10 @@
-﻿using Budget5000.Infrastructure.Model;
+﻿using Budget5000.Infrastructure.Interface;
+using Budget5000.Infrastructure.Model;
 using System.Collections.Generic;
 
 namespace Budget5000.Service.Service
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
         private List<Account> _Accounts;
 
@@ -50,6 +51,13 @@ namespace Budget5000.Service.Service
         public List<Account> GetAccounts()
         {
             return _Accounts;
+        }
+
+        public void AddAccount(Account account)
+        {
+            if (account == null) return;
+
+            _Accounts.Add(account);
         }
     }
 }

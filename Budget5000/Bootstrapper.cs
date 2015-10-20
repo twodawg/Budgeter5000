@@ -1,4 +1,5 @@
-﻿using Budget5000.TransactionForm;
+﻿using Budget5000.Service;
+using Budget5000.TransactionForm;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Modularity;
 using Prism.Unity;
@@ -35,8 +36,12 @@ namespace Budget5000
         protected override void ConfigureModuleCatalog()
         {
             Type TransactionFormType = typeof(TransactionFormModule);
-            ModuleCatalog.AddModule(new ModuleInfo(TransactionFormType.Name, TransactionFormType.AssemblyQualifiedName));
+            ModuleCatalog.AddModule(new ModuleInfo(TransactionFormType.Name, 
+                TransactionFormType.AssemblyQualifiedName));
 
+            Type ServiceType = typeof(ServiceModule);
+            ModuleCatalog.AddModule(new ModuleInfo(ServiceType.Name,
+                ServiceType.AssemblyQualifiedName));
         }
     }
 }

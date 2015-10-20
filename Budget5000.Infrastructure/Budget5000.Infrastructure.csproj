@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InfrastructureModule.cs" />
+    <Compile Include="Interface\IAccountService.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Transaction.cs" />
     <Compile Include="RegionNames.cs" />
