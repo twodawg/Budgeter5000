@@ -16,6 +16,7 @@
         LIABILITY,
         EQUITY,
         INCOME,
+        COSTOFGOODS,
         EXPENSE,
     }
 }

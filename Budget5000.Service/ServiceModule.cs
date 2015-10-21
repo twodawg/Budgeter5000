@@ -21,8 +21,10 @@ namespace Budget5000.Service
         {
             var accountService = new AccountService();
 
-            _Container.RegisterType<IAccountService, AccountService>(typeof(AccountService).Name,
-                new ContainerControlledLifetimeManager());
+            //_Container.RegisterType<IAccountService, AccountService>(typeof(AccountService).Name,
+            //    new ContainerControlledLifetimeManager());
+
+            _Container.RegisterInstance<IAccountService>(accountService, new ContainerControlledLifetimeManager());
         }
     }
 }

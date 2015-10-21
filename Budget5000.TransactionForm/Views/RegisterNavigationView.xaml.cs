@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Budget5000.TransactionForm.View
+namespace Budget5000.TransactionForm.Views
 {
     /// <summary>
     /// Interaction logic for RegisterNavigationView.xaml

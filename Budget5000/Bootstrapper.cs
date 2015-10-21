@@ -1,7 +1,10 @@
 ﻿using Budget5000.Service;
 using Budget5000.TransactionForm;
+using Budget5000.TransactionForm.Views;
+using Budget5000.TransactionForm.ViewModels;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Modularity;
+using Prism.Mvvm;
 using Prism.Unity;
 using System;
 using System.Windows;
@@ -27,21 +30,17 @@ namespace Budget5000
         {
             base.ConfigureContainer();
         }
-
-        protected override IModuleCatalog CreateModuleCatalog()
-        {
-            return new AggregateModuleCatalog();
-        }
-
+        
         protected override void ConfigureModuleCatalog()
         {
-            Type TransactionFormType = typeof(TransactionFormModule);
-            ModuleCatalog.AddModule(new ModuleInfo(TransactionFormType.Name, 
-                TransactionFormType.AssemblyQualifiedName));
+            base.ConfigureModuleCatalog();
 
-            Type ServiceType = typeof(ServiceModule);
-            ModuleCatalog.AddModule(new ModuleInfo(ServiceType.Name,
-                ServiceType.AssemblyQualifiedName));
+            ModuleCatalog moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
+
+            // Add all of the modules here
+            moduleCatalog.AddModule(typeof(ServiceModule));
+            moduleCatalog.AddModule(typeof(TransactionFormModule));
+            //moduleCatalog.AddModule(typeof(ReportModule));
         }
     }
 }

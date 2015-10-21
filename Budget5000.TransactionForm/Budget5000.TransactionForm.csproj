@@ -75,25 +75,38 @@
   <ItemGroup>
     <Compile Include="TransactionFormModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\RegisterNavigationView.xaml.cs">
+    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="Views\AccountNavigationView.xaml.cs">
+      <DependentUpon>AccountNavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountView.xaml.cs">
+      <DependentUpon>AccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterNavigationView.xaml.cs">
       <DependentUpon>RegisterNavigationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RegisterView.xaml.cs">
+    <Compile Include="Views\RegisterView.xaml.cs">
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\RegisterNavigationView.xaml">
+    <Page Include="Views\AccountNavigationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RegisterView.xaml">
+    <Page Include="Views\AccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterNavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
