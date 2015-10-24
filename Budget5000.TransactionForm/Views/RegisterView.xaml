@@ -15,6 +15,17 @@
                 <DataGridComboBoxColumn ItemsSource="{Binding Path=AccountList}" 
                                         SelectedValuePath="AccountName"
                                         DisplayMemberPath="Description" />
+                <DataGridTemplateColumn Header="Account Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Path=DataContext.AccountList,
+                                RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                                      DisplayMemberPath="Description"
+                                                      SelectedValue="{Binding AccountName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      SelectedValuePath="AccountName"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
