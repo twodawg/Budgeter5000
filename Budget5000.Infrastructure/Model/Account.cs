@@ -1,4 +1,6 @@
-﻿namespace Budget5000.Infrastructure.Model
+﻿using System;
+
+namespace Budget5000.Infrastructure.Model
 {
     public class Account
     {

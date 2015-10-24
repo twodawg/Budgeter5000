@@ -4,6 +4,8 @@ using Prism.Mvvm;
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,14 +21,24 @@ namespace Budget5000.TransactionForm.ViewModels
             _AccountService = accountService;
         }
 
-        private List<Transaction> _Records;
+        private ObservableCollection<Transaction> _Records;
         private ITransactionService _TransactionService;
         private IAccountService _AccountService;
 
-        public List<Transaction> Records
+        public ObservableCollection<Transaction> Records
         {
             get { return _Records; }
             set { SetProperty(ref _Records, value); }
+        }
+
+        private void Records_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                var trans = e.NewItems[0] as Transaction;
+                trans.ID = Guid.NewGuid();
+                trans.TimeStamp = DateTime.Now;
+            }
         }
 
         public List<Account> AccountList
@@ -36,12 +48,13 @@ namespace Budget5000.TransactionForm.ViewModels
                 return _AccountService.GetAccounts();
             }
         }
-
+        
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             Records = _TransactionService.GetTransactions();
-            Records.Add(new Transaction());
+            Records.CollectionChanged += Records_CollectionChanged;
         }
+
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {

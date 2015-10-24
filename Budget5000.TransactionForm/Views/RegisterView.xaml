@@ -3,18 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:core="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:Budget5000.TransactionForm.Views"
+             xmlns:model="clr-namespace:Budget5000.Infrastructure.Model;assembly=Budget5000.Infrastructure"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:vm="clr-namespace:Budget5000.TransactionForm.ViewModels"
              d:DataContext="{d:DesignInstance vm:RegisterViewModel, IsDesignTimeCreatable=True}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" >
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="typeEnum" MethodName="GetValues" ObjectType="{x:Type core:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="model:ModifierType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
-        <DataGrid ItemsSource="{Binding Records}">
+        <DataGrid ItemsSource="{Binding Records}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridComboBoxColumn ItemsSource="{Binding Path=AccountList}" 
-                                        SelectedValuePath="AccountName"
-                                        DisplayMemberPath="Description" />
                 <DataGridTemplateColumn Header="Account Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -22,9 +28,25 @@
                                 RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
                                                       DisplayMemberPath="Description"
                                                       SelectedValue="{Binding AccountName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                      SelectedValuePath="AccountName"/>
+                                                      />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridComboBoxColumn Header="Type"  SelectedItemBinding="{Binding Type}" 
+                                        ItemsSource="{Binding Source={StaticResource typeEnum}}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Description}" MinWidth="150"/>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
+                <DataGridTemplateColumn Header="Pick a Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TimeStamp, StringFormat='MM-dd-yyyy'}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding TimeStamp}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>

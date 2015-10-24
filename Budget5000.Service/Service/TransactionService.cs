@@ -2,6 +2,7 @@
 using Budget5000.Infrastructure.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,15 +11,15 @@ namespace Budget5000.Service.Service
 {
     public class TransactionService : ITransactionService
     {
-        public List<Transaction> WorkingTransactions { get; set; }
+        public ObservableCollection<Transaction> WorkingTransactions { get; set; }
 
         public TransactionService()
         {
+            WorkingTransactions = new ObservableCollection<Transaction>();
         }
 
-        public List<Transaction> GetTransactions()
+        public ObservableCollection<Transaction> GetTransactions()
         {
-            WorkingTransactions = new List<Transaction>();
             return WorkingTransactions;
         }
     }
