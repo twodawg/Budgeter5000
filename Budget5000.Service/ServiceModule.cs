@@ -25,6 +25,9 @@ namespace Budget5000.Service
             //    new ContainerControlledLifetimeManager());
 
             _Container.RegisterInstance<IAccountService>(accountService, new ContainerControlledLifetimeManager());
+
+            var transactionService = new TransactionService();
+            _Container.RegisterInstance<ITransactionService>(transactionService, new ContainerControlledLifetimeManager());
         }
     }
 }

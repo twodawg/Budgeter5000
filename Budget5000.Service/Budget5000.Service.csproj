@@ -72,6 +72,7 @@
     <Compile Include="ServiceModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\TransactionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
