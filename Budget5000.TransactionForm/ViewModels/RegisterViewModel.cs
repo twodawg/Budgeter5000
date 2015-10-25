@@ -1,5 +1,6 @@
 ﻿using Budget5000.Infrastructure.Interface;
 using Budget5000.Infrastructure.Model;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
@@ -19,12 +20,20 @@ namespace Budget5000.TransactionForm.ViewModels
         {
             _TransactionService = transactionService;
             _AccountService = accountService;
+
+            SaveAllCommand = new DelegateCommand(OnSave);
+        }
+
+        private void OnSave()
+        {
+            _TransactionService.SaveTransactions();
         }
 
         private ObservableCollection<Transaction> _Records;
         private ITransactionService _TransactionService;
         private IAccountService _AccountService;
 
+        public DelegateCommand SaveAllCommand;
         public ObservableCollection<Transaction> Records
         {
             get { return _Records; }

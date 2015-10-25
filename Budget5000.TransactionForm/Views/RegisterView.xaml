@@ -19,7 +19,14 @@
         </ObjectDataProvider>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
-        <DataGrid ItemsSource="{Binding Records}" AutoGenerateColumns="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding SaveAllCommand}" Content="Save" Margin="2"/> 
+        </StackPanel>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Records}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Account Name">
                     <DataGridTemplateColumn.CellTemplate>

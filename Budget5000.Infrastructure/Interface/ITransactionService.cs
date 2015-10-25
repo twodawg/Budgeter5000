@@ -13,5 +13,7 @@ namespace Budget5000.Infrastructure.Interface
         ObservableCollection<Transaction> WorkingTransactions { get; set; }
 
         ObservableCollection<Transaction> GetTransactions();
+
+        void SaveTransactions();
     }
 }
