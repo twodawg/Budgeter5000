@@ -37,9 +37,9 @@ namespace Budget5000.Service.Service
             var homedirectory = Environment.GetFolderPath(
                 Environment.SpecialFolder.Personal) + folder;
 
-            using (var filestream = File.OpenRead(homedirectory + file))
+            using (var filestream = File.OpenWrite(homedirectory + file))
             {
-                var serializer = new XmlSerializer(typeof(Transaction));
+                var serializer = new XmlSerializer(typeof(ObservableCollection<Transaction>));
                 
                 serializer.Serialize(filestream, Records);
             }
@@ -63,7 +63,7 @@ namespace Budget5000.Service.Service
             {
                 using (var filestream = File.OpenRead(homedirectory + file))
                 {
-                    var serializer = new XmlSerializer(typeof(Transaction));
+                    var serializer = new XmlSerializer(typeof(ObservableCollection<Transaction>));
 
                     if (filestream.Length > 0)
                     {

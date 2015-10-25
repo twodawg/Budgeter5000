@@ -33,7 +33,7 @@ namespace Budget5000.TransactionForm.ViewModels
         private ITransactionService _TransactionService;
         private IAccountService _AccountService;
 
-        public DelegateCommand SaveAllCommand;
+        public DelegateCommand SaveAllCommand { get; set; }
         public ObservableCollection<Transaction> Records
         {
             get { return _Records; }
