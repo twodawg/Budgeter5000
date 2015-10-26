@@ -40,6 +40,19 @@ namespace Budget5000.TransactionForm.ViewModels
             set { SetProperty(ref _Records, value); }
         }
 
+        private Transaction _SelectedRecord;
+        public Transaction SelectedRecord
+        {
+            get
+            {
+                return _SelectedRecord;
+            }
+            set
+            {
+                _SelectedRecord = value;
+            }
+        }
+
         private void Records_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
@@ -55,6 +68,13 @@ namespace Budget5000.TransactionForm.ViewModels
             get
             {
                 return _AccountService.GetAccounts();
+            }
+        }
+        public Account SelectedAccount
+        {
+            set
+            {
+                _SelectedRecord.AccountName = value;
             }
         }
         

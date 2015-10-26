@@ -26,7 +26,7 @@
         <StackPanel Orientation="Horizontal">
             <Button Command="{Binding SaveAllCommand}" Content="Save" Margin="2"/> 
         </StackPanel>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Records}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Records}" SelectedItem="{Binding SelectedRecord}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Account Name">
                     <DataGridTemplateColumn.CellTemplate>
@@ -35,7 +35,8 @@
                                 RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
                                                       DisplayMemberPath="Description"
                                                       SelectedValue="{Binding AccountName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                      SelectedValuePath="Description"/>
+                                      SelectedValuePath="Description"
+                                      SelectedItem="{Binding SelectedAccount}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
