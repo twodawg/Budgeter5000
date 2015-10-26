@@ -33,10 +33,11 @@
                         <DataTemplate>
                             <ComboBox ItemsSource="{Binding Path=DataContext.AccountList,
                                 RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                                      DisplayMemberPath="Description"
-                                                      SelectedValue="{Binding AccountName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedValue="{Binding AccountName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      />
+                            <!--      DisplayMemberPath="Description"
                                       SelectedValuePath="Description"
-                                      SelectedItem="{Binding SelectedAccount}"/>
+                                      SelectedItem="{Binding SelectedAccount}"-->
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
