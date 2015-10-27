@@ -49,7 +49,7 @@ namespace Budget5000.TransactionForm.ViewModels
             }
             set
             {
-                _SelectedRecord = value;
+                SetProperty(ref _SelectedRecord, value);
             }
         }
 
@@ -75,6 +75,17 @@ namespace Budget5000.TransactionForm.ViewModels
             set
             {
                 _SelectedRecord.AccountName = value;
+            }
+        }
+        public Account SelectedAccountFilter
+        {
+            set
+            {
+                Records = new ObservableCollection<Transaction>(
+                    _TransactionService.GetTransactions()
+                    .Where(q => q.AccountName.Description == value.Description));
+
+                Records.CollectionChanged += Records_CollectionChanged;
             }
         }
         

@@ -22,11 +22,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <Button Command="{Binding SaveAllCommand}" Content="Save" Margin="2"/> 
         </StackPanel>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Records}" SelectedItem="{Binding SelectedRecord}" AutoGenerateColumns="False">
+        <GroupBox Grid.Row="1" Header="Filters">
+            <StackPanel Orientation="Horizontal">
+                <ComboBox ItemsSource="{Binding AccountList}" SelectedItem="{Binding SelectedAccountFilter}"></ComboBox>
+            </StackPanel>
+        </GroupBox>
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Records}" SelectedItem="{Binding SelectedRecord}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Account Name">
                     <DataGridTemplateColumn.CellTemplate>
