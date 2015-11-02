@@ -70,13 +70,6 @@ namespace Budget5000.TransactionForm.ViewModels
                 return _AccountService.GetAccounts();
             }
         }
-        //public Account SelectedAccount
-        //{
-        //    set
-        //    {
-        //        _SelectedRecord.AccountName = value;
-        //    }
-        //}
         public Account SelectedAccountFilter
         {
             get

@@ -38,10 +38,11 @@
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
                             <ComboBox IsEditable="False"
-                                ItemsSource="{Binding Path=AccountList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                      Text="{Binding AccountName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                      DisplayMemberPath="Description"
-                                      />     
+                                ItemsSource="{Binding Path=DataContext.AccountList, 
+                                RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
+                                Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding AccountName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                />     
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                     <DataGridTemplateColumn.CellTemplate>
