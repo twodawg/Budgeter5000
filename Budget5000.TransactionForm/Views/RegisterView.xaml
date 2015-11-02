@@ -35,18 +35,22 @@
         <DataGrid Grid.Row="2" ItemsSource="{Binding Records}" SelectedItem="{Binding SelectedRecord}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Account Name">
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox IsEditable="False"
+                                ItemsSource="{Binding Path=AccountList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                      Text="{Binding AccountName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="Description"
+                                      />     
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Path=DataContext.AccountList,
-                                RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
-                                SelectedValue="{Binding AccountName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      />
-                            <!--      DisplayMemberPath="Description"
-                                      SelectedValuePath="Description"
-                                      SelectedItem="{Binding SelectedAccount}"-->
+                            <TextBlock Text="{Binding AccountName}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                                
                 <DataGridComboBoxColumn Header="Type"  SelectedItemBinding="{Binding Type}" 
                                         ItemsSource="{Binding Source={StaticResource typeEnum}}" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" MinWidth="150"/>
