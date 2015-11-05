@@ -13,11 +13,11 @@ namespace Budget5000.Infrastructure.Model
             set { SetProperty(ref _ID, value); }
         }
 
-        private Account _AccountName;
-        public Account AccountName
+        private int _AccountID;
+        public int AccountID
         {
-            get { return _AccountName; }
-            set { SetProperty(ref _AccountName, value); }
+            get { return _AccountID; }
+            set { SetProperty(ref _AccountID, value); }
         }
 
         private ModifierType _Type;
