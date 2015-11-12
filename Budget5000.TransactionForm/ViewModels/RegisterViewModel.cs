@@ -8,8 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace Budget5000.TransactionForm.ViewModels
 {
@@ -37,8 +36,12 @@ namespace Budget5000.TransactionForm.ViewModels
         public ObservableCollection<Transaction> Records
         {
             get { return _Records; }
-            set { SetProperty(ref _Records, value); }
+            set
+            {
+                SetProperty(ref _Records, value);
+            }
         }
+
 
         private Transaction _SelectedRecord;
         public Transaction SelectedRecord
@@ -62,7 +65,7 @@ namespace Budget5000.TransactionForm.ViewModels
                 trans.TimeStamp = DateTime.Now;
             }
         }
-
+        
         public List<Account> AccountList
         {
             get
@@ -70,13 +73,6 @@ namespace Budget5000.TransactionForm.ViewModels
                 return _AccountService.GetAccounts();
             }
         }
-        //public Account SelectedAccount
-        //{
-        //    set
-        //    {
-        //        _SelectedRecord.AccountName = value;
-        //    }
-        //}
         public Account SelectedAccountFilter
         {
             get
@@ -87,12 +83,12 @@ namespace Budget5000.TransactionForm.ViewModels
             {
                 Records = new ObservableCollection<Transaction>(
                     _TransactionService.GetTransactions()
-                    .Where(q => q.AccountName.Description == value.Description));
+                    .Where(q => q.AccountID == value.ID));
 
                 Records.CollectionChanged += Records_CollectionChanged;
             }
         }
-        
+
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             Records = _TransactionService.GetTransactions();
