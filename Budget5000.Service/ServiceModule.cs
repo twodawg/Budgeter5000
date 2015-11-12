@@ -20,10 +20,6 @@ namespace Budget5000.Service
         public void Initialize()
         {
             var accountService = new AccountService();
-
-            //_Container.RegisterType<IAccountService, AccountService>(typeof(AccountService).Name,
-            //    new ContainerControlledLifetimeManager());
-
             _Container.RegisterInstance<IAccountService>(accountService, new ContainerControlledLifetimeManager());
 
             var transactionService = new TransactionService();
