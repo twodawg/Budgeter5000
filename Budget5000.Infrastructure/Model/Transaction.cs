@@ -47,6 +47,12 @@ namespace Budget5000.Infrastructure.Model
             get { return _TimeStamp; }
             set { SetProperty(ref _TimeStamp, value); }
         }
+        private int _RepeatAfterDays;
+        public int RepeatAfterDays
+        {
+            get { return _RepeatAfterDays; }
+            set { SetProperty(ref _RepeatAfterDays, value); }
+        }
     }
     public enum ModifierType
     {
