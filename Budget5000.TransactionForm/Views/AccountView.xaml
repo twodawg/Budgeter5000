@@ -9,10 +9,6 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d">
     <Grid>
-        <DataGrid ItemsSource="{Binding Records}" SelectedItem="{Binding CurrentRecord}">
-            <!--<DataGrid.Columns>
-                <DataGridTextColumn Header="Account Number" Binding="{Binding ID}"/>
-            </DataGrid.Columns>-->
-        </DataGrid>
+        <DataGrid ItemsSource="{Binding Records}" SelectedItem="{Binding CurrentRecord}"/>
     </Grid>
 </UserControl>
