@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Budget5000.Graph.Views
+namespace Budget5000.Report.Views
 {
     /// <summary>
     /// Interaction logic for BalanceSheetView.xaml

@@ -8,6 +8,8 @@ using Prism.Mvvm;
 using Prism.Unity;
 using System;
 using System.Windows;
+using Budget5000.Graph;
+using Budget5000.Report;
 
 namespace Budget5000
 {
@@ -40,7 +42,8 @@ namespace Budget5000
             // Add all of the modules here
             moduleCatalog.AddModule(typeof(ServiceModule));
             moduleCatalog.AddModule(typeof(TransactionFormModule));
-            //moduleCatalog.AddModule(typeof(ReportModule));
+            moduleCatalog.AddModule(typeof(GraphModule));
+            moduleCatalog.AddModule(typeof(ReportModule));
         }
     }
 }

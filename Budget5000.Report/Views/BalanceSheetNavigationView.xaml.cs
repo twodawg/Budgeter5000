@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Budget5000.Graph.Views
+namespace Budget5000.Report.Views
 {
     /// <summary>
-    /// Interaction logic for IncomeStatementView.xaml
+    /// Interaction logic for BalanceSheetNavigationView.xaml
     /// </summary>
-    public partial class IncomeStatementView : UserControl
+    public partial class BalanceSheetNavigationView : UserControl
     {
-        public IncomeStatementView()
+        public BalanceSheetNavigationView()
         {
             InitializeComponent();
         }
