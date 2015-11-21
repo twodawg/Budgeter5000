@@ -37,7 +37,7 @@
                 <DataGridTemplateColumn Header="Pick a Date">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding TimeStamp, StringFormat='MM-dd-yyyy'}" />
+                            <TextBlock Text="{Binding TimeStamp, StringFormat='MM/dd/yyyy'}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
