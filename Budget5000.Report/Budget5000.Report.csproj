@@ -96,9 +96,16 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Asset\logo.png" />
+    <Content Include="Templates\IncomeReport.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Templates\hello.fo">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\BalanceSheetNavigationView.xaml">
