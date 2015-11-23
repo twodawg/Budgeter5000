@@ -10,6 +10,6 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" >
     <Grid>
-            <Button Content="Price Income Statement" Command="{Binding PrintIncomeReport}"/>
+            <Button Content="Print Income Statement" Command="{Binding PrintIncomeReport}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>

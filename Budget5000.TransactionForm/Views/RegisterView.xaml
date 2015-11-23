@@ -54,7 +54,7 @@
                             <ComboBox ItemsSource="{Binding Path=DataContext.AccountList,
                                 RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
                                                       DisplayMemberPath="Description"
-                                                      SelectedValue="{Binding AccountID}"
+                                                      SelectedValue="{Binding AccountID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                       SelectedValuePath="ID"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

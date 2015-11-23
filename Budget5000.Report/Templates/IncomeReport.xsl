@@ -4,7 +4,34 @@
                 xmlns:xalan="http://xml.apache.org/xalan"
                 xmlns:tns="tns:tns"
                 xmlns:ms="urn:schemas-microsoft-com:xslt">
-  <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="Arial" font-size="8pt" line-height="1.2">
-    
-  </fo:root>
+  <xsl:template match="IncomeStatement">
+    <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="Arial" font-size="8pt" line-height="1.2">
+      <fo:layout-master-set>
+        <fo:simple-page-master master-name="first"
+        page-height="29.7cm"
+        page-width="21cm"
+        margin-top="0.1in" margin-bottom="0in" margin-left="0.62in" margin-right="0.5in">
+          <fo:region-body margin-top="0.6in" margin-bottom="0.5in"/>
+          <fo:region-before extent="1.0in"/>
+          <fo:region-after extent=".5in"/>
+        </fo:simple-page-master>
+        <fo:simple-page-master master-name="landscape"
+          page-width="29.7cm"
+          page-height="21cm"
+          margin-top="0.1in" margin-bottom="0in" margin-left="0.62in" margin-right="0.5in">
+          <fo:region-body margin-top="0.5in" margin-bottom="0.5in"/>
+          <fo:region-before extent="1.0in"/>
+          <fo:region-after extent=".5in"/>
+        </fo:simple-page-master>
+      </fo:layout-master-set>
+      <fo:page-sequence master-reference="first">
+
+        <fo:flow flow-name="xsl-region-body">
+          <fo:block>
+            <xsl:value-of select="Transactions/Transaction/Description"/>
+          </fo:block>
+        </fo:flow>
+      </fo:page-sequence>
+    </fo:root>
+  </xsl:template>
 </xsl:stylesheet>

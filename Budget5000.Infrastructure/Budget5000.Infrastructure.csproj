@@ -73,6 +73,7 @@
     <Compile Include="Interface\IAccountService.cs" />
     <Compile Include="Interface\ITransactionService.cs" />
     <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\IncomeStatement.cs" />
     <Compile Include="Model\Transaction.cs" />
     <Compile Include="RegionNames.cs" />
   </ItemGroup>

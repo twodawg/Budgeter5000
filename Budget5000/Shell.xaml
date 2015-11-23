@@ -8,9 +8,9 @@
         mc:Ignorable="d"
         Title="Budgeter 5000" Height="720" Width="1028">
     <Grid x:Name="LayoutRoot">
-        <Grid MinWidth="300" MaxWidth="1000">
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -18,15 +18,11 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <TextBlock HorizontalAlignment="Left" Width="Auto" Text="View-Switching Navigation" FontWeight="Normal" Foreground="#FFFFFFFF" FontSize="24" FontFamily="Comic Sans MS" VerticalAlignment="Center"/>
-            </StackPanel>
-            
-            <Border Grid.Column="0" Grid.Row="2" Background="LightGray" MinWidth="250" Margin="5,0,0,5">
-                <ItemsControl x:Name="NavigationItemsControl" prism:RegionManager.RegionName="MainNavigationRegion" Grid.Column="0" Margin="5" Padding="5" />
+            <Border Grid.Column="0" Grid.Row="2" MinWidth="150" Background="LightBlue" CornerRadius="8" Margin="2">
+                <ItemsControl prism:RegionManager.RegionName="MainNavigationRegion" Grid.Column="0" Margin="5" Padding="5" />
             </Border>
             <ContentControl prism:RegionManager.RegionName="MainContentRegion" 
-                        Grid.Column="1" Grid.Row="2" Margin="5,0,5,5" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+                        Grid.Column="1" Grid.Row="2" Margin="6.8,0,1.6,5.4" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
         </Grid>
     </Grid>
 </Window>

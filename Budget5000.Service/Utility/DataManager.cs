@@ -26,8 +26,8 @@ namespace Budget5000.Service.Utility
 
         public void SaveRecords(ObservableCollection<Transaction> Records)
         {
-            using (var filestream = System.IO.File.OpenWrite(HomeDirectory + File))
-            {
+            using (var filestream = System.IO.File.Create(HomeDirectory + File))
+            {                
                 var serializer = new XmlSerializer(typeof(ObservableCollection<Transaction>));
 
                 serializer.Serialize(filestream, Records);
