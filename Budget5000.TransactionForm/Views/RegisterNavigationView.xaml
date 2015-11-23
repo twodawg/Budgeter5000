@@ -6,5 +6,6 @@
              xmlns:local="clr-namespace:Budget5000.TransactionForm.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <RadioButton Content="Register" GroupName="MainNavigation" Click="RadioButton_Click"/>
+    <RadioButton x:Name="NavigateToRegisterRadioButton" Content="Register" 
+                 GroupName="MainNavigation" Click="RadioButton_Click"/>
 </UserControl>

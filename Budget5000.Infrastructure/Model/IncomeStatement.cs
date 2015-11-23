@@ -9,6 +9,6 @@ namespace Budget5000.Infrastructure.Model
 {
     public class IncomeStatement
     {
-        public ObservableCollection<Transaction> Transactions { get; set; }
+        public List<Transaction> Transactions { get; set; }
     }
 }

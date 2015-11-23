@@ -30,6 +30,18 @@ namespace Budget5000.TransactionForm.Views
             InitializeComponent();
 
             _RegionManager = regionManager;
+
+            IRegion mainRegion = regionManager.Regions[RegionNames.MainContentRegion];
+
+            if (mainRegion != null && mainRegion.NavigationService != null)
+            {
+                mainRegion.NavigationService.Navigated += MainRegion_Navigated;
+            }
+        }
+
+        private void MainRegion_Navigated(object sender, RegionNavigationEventArgs e)
+        {
+            NavigateToRegisterRadioButton.IsChecked = (e.Uri == registerViewUri);
         }
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)

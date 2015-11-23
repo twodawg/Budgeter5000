@@ -156,6 +156,10 @@
       <Link>Templates\IncomeReport.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\Budget5000.Report\Templates\Transaction.xsl">
+      <Link>Templates\Transaction.xsl</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,15 +1,16 @@
-﻿using System;
+﻿using Budget5000.Infrastructure.Interface;
+using Budget5000.Infrastructure.Model;
+using Fonet;
+using Fonet.Render.Pdf;
 using Prism.Commands;
 using Prism.Mvvm;
-using System.Xml.Xsl;
-using Fonet;
+using System;
 using System.Diagnostics;
-using Fonet.Render.Pdf;
-using Budget5000.Infrastructure.Interface;
-using Budget5000.Infrastructure.Model;
 using System.IO;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Xml;
+using System.Xml.Serialization;
+using System.Xml.Xsl;
 
 namespace Budget5000.Report.ViewModels
 {
@@ -101,7 +102,8 @@ namespace Budget5000.Report.ViewModels
         private IncomeStatement BuildIncomeStatement()
         {
             var incomeStatement = new IncomeStatement();
-            incomeStatement.Transactions = _TransactionService.WorkingTransactions;
+            incomeStatement.Transactions = _TransactionService.WorkingTransactions
+                .Where(q => q.AccountID >= 400).ToList();
             return incomeStatement;
         }
 

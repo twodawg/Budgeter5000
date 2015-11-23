@@ -4,6 +4,7 @@
                 xmlns:xalan="http://xml.apache.org/xalan"
                 xmlns:tns="tns:tns"
                 xmlns:ms="urn:schemas-microsoft-com:xslt">
+  <xsl:import href="Transaction.xsl"/>
   <xsl:template match="IncomeStatement">
     <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="Arial" font-size="8pt" line-height="1.2">
       <fo:layout-master-set>
@@ -28,8 +29,9 @@
 
         <fo:flow flow-name="xsl-region-body">
           <fo:block>
-            <xsl:value-of select="Transactions/Transaction/Description"/>
+            All Income and Expense Transactions
           </fo:block>
+          <xsl:call-template name="Transaction"/>          
         </fo:flow>
       </fo:page-sequence>
     </fo:root>
