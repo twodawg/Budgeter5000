@@ -7,7 +7,7 @@
       <fo:table table-layout="fixed">
         <fo:table-column column-width="2cm"/>
         <fo:table-column column-width="2cm"/>
-        <fo:table-column column-width="2cm"/>
+        <fo:table-column column-width="4cm"/>
         <fo:table-column column-width="2cm"/>
         <fo:table-column column-width="2cm"/>
         <fo:table-header>
