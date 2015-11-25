@@ -22,7 +22,23 @@ namespace Budget5000.Report.ViewModels
         {
             _TransactionService = transactionService;
             PrintIncomeReport = new DelegateCommand(OnPrintIncomeReport);
+            PrintSampleReport = new DelegateCommand(OnPrintSampleReport);
         }
+
+        private void OnPrintSampleReport()
+        {
+            string reportLocation = BuildFilePath("SampleReport.pdf");
+
+            string foxslPath = @"Templates\hello.fo";
+            FonetDriver driver = FonetDriver.Make();
+            driver.OnError += new FonetDriver.FonetEventHandler(FonetError);
+            driver.Render(foxslPath, reportLocation);
+
+            Process.Start(reportLocation);
+        }
+
+        public DelegateCommand PrintIncomeReport { get; set; }
+        public DelegateCommand PrintSampleReport { get; set; }
 
         private void OnPrintIncomeReport()
         {
@@ -51,8 +67,7 @@ namespace Budget5000.Report.ViewModels
                 reportDataMemoryStream.Position = 0;
                 reportDataXmlReader = XmlReader.Create(reportDataMemoryStream);
 
-                string foxslPath = @"Templates\IncomeReport.xsl";
-                //string foxslPath = @"Templates\hello.fo";
+                string foxslPath = @"Templates\IncomeReport.xsl";                
                 var xslt = new XslCompiledTransform();
                 xslt.Load(foxslPath);
 
@@ -106,10 +121,8 @@ namespace Budget5000.Report.ViewModels
                 .Where(q => q.AccountID >= 400).ToList();
             return incomeStatement;
         }
-
-        public DelegateCommand PrintIncomeReport { get; set; }
-
-        public void FonetError(object Driver, FonetEventArgs e)
+                
+        void FonetError(object Driver, FonetEventArgs e)
         {
             const string LogName = "Application";
             // Insert into Event Log

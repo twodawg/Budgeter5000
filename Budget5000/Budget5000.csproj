@@ -152,6 +152,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Budget5000.Report\Assets\logo.png">
+      <Link>Assets\logo.png</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\Budget5000.Report\Templates\IncomeReport.xsl">
       <Link>Templates\IncomeReport.xsl</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

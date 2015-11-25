@@ -12,9 +12,9 @@
         page-height="29.7cm"
         page-width="21cm"
         margin-top="0.1in" margin-bottom="0in" margin-left="0.62in" margin-right="0.5in">
-          <fo:region-body margin-top="0.6in" margin-bottom="0.5in"/>
-          <fo:region-before extent="1.0in"/>
-          <fo:region-after extent=".5in"/>
+          <fo:region-body region-name="xsl-region-body" margin-top="0.6in" margin-bottom="0.5in"/>
+          <fo:region-before region-name="xsl-region-before" extent="1.0in"/>
+          <fo:region-after region-name="xsl-region-after" extent=".5in"/>
         </fo:simple-page-master>
         <fo:simple-page-master master-name="landscape"
           page-width="29.7cm"
@@ -26,7 +26,19 @@
         </fo:simple-page-master>
       </fo:layout-master-set>
       <fo:page-sequence master-reference="first">
-
+        <!-- HEADER -->
+        <fo:static-content flow-name="xsl-region-before">
+          <fo:block font-weight="normal" text-align="right">
+            <fo:external-graphic src="url(Assets/logo.png)" height="8mm"/>            
+          </fo:block>          
+        </fo:static-content>
+        <!--FOOTER-->
+        <fo:static-content flow-name="xsl-region-after">
+          <fo:block font-weight="normal" text-align="right">
+            Income Report
+          </fo:block>
+        </fo:static-content>
+        <!--BODY-->
         <fo:flow flow-name="xsl-region-body">
           <fo:block>
             All Income and Expense Transactions

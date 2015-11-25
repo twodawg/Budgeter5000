@@ -9,7 +9,10 @@
              d:DataContext="{d:DesignInstance vm:IncomeStatementViewModel, IsDesignTimeCreatable=True}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" >
-    <Grid>
-            <Button Content="Print Income Statement" Command="{Binding PrintIncomeReport}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-    </Grid>
+    <StackPanel Orientation="Horizontal">
+        <Button Content="Print Income Statement" Command="{Binding PrintIncomeReport}" 
+                VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2"/>
+        <Button Content="Print Sample Report" Command="{Binding PrintSampleReport}" 
+                VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2"/>
+    </StackPanel>
 </UserControl>
