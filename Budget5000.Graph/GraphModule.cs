@@ -1,6 +1,9 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Budget5000.Graph.Views;
+using Budget5000.Infrastructure;
+using Microsoft.Practices.Unity;
 using Prism.Modularity;
 using Prism.Regions;
+using System;
 
 namespace Budget5000.Graph
 {
@@ -16,6 +19,11 @@ namespace Budget5000.Graph
         }
         public void Initialize()
         {
+            _RegionManager.RegisterViewWithRegion(RegionNames.MainNavigationRegion,
+                   () => _Container.Resolve<IncomeGraphNavigationView>());
+
+            _Container.RegisterType<Object, IncomeGraphView>(nameof(IncomeGraphView));
+
         }
     }
 }
