@@ -78,7 +78,7 @@ namespace Budget5000.Report.ViewModels
                     var options = new PdfRendererOptions();
                     options.Author = "Michael Twohey";
                     options.Title = "Income Statement";
-                    options.Subject = "Bugeter 5000";
+                    options.Subject = "Budgeter 5000";
                     //options.EnableModify = false;
                     //options.EnableAdd = false;
                     //options.EnableCopy = false;
@@ -132,7 +132,7 @@ namespace Budget5000.Report.ViewModels
         }
         private static string BuildFilePath(string filename)
         {
-            string folders = String.Format("{0}\\Budget 5000",
+            string folders = String.Format("{0}\\Budgeter 5000",
                             Environment.GetFolderPath(Environment.SpecialFolder.Personal));
 
             if (!Directory.Exists(folders))

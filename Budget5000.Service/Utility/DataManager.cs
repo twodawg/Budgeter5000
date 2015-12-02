@@ -18,7 +18,7 @@ namespace Budget5000.Service.Utility
 
         public DataManager()
         {
-            Folder = "\\Budget 5000";
+            Folder = "\\Budgeter 5000";
             File = "\\Transations.xml";
             HomeDirectory = Environment.GetFolderPath(
                 Environment.SpecialFolder.Personal) + Folder;
