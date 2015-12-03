@@ -75,34 +75,44 @@ namespace Budget5000.Report.ViewModels
                 {
                     // Ready for the FO engine to generate PDF from
                     xslt.Transform(reportDataXmlReader, null, foReportMemoryStream);
-                    var options = new PdfRendererOptions();
-                    options.Author = "Michael Twohey";
-                    options.Title = "Income Statement";
-                    options.Subject = "Budgeter 5000";
-                    //options.EnableModify = false;
-                    //options.EnableAdd = false;
-                    //options.EnableCopy = false;
-                    //options.EnablePrinting = true;
-                    //options.OwnerPassword = "slough";
-                    // https://fonet.codeplex.com
-                    FonetDriver driver = FonetDriver.Make();
-                    driver.OnError += new FonetDriver.FonetEventHandler(FonetError);
-                    driver.Options = options;
-                    try
-                    {
-                        using (var fileStream = new FileStream(reportLocation, FileMode.Create))
-                        {
-                            foReportMemoryStream.Position = 0;
-                            driver.Render(foReportMemoryStream, fileStream);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message + ex.InnerException);
-                    }
+                    WriteIncomeStatement(reportLocation, foReportMemoryStream);
                 }
             }
             return reportLocation;
+        }
+
+        private void WriteIncomeStatement(string reportLocation, MemoryStream foReportMemoryStream)
+        {
+            // https://fonet.codeplex.com
+            FonetDriver driver = FonetDriver.Make();
+            driver.OnError += new FonetDriver.FonetEventHandler(FonetError);
+            driver.Options = IncomeStatementRenderOptions();
+            try
+            {
+                using (var fileStream = new FileStream(reportLocation, FileMode.Create))
+                {
+                    foReportMemoryStream.Position = 0;
+                    driver.Render(foReportMemoryStream, fileStream);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + ex.InnerException);
+            }
+        }
+
+        private PdfRendererOptions IncomeStatementRenderOptions()
+        {
+            var options = new PdfRendererOptions();
+            options.Author = "Michael Twohey";
+            options.Title = "Income Statement";
+            options.Subject = "Budgeter 5000";
+            //options.EnableModify = false;
+            //options.EnableAdd = false;
+            //options.EnableCopy = false;
+            //options.EnablePrinting = true;
+            //options.OwnerPassword = "slough";
+            return options;
         }
 
         private void SaveToFile(MemoryStream reportDataMemoryStream)
