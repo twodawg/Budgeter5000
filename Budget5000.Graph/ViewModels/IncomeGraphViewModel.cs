@@ -1,4 +1,5 @@
-﻿using OxyPlot;
+﻿using Budget5000.Service.Service;
+using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using Prism.Mvvm;
@@ -9,9 +10,10 @@ namespace Budget5000.Graph.ViewModels
 {
     public class IncomeGraphViewModel : BindableBase
     {
-        public IncomeGraphViewModel()
+        public IncomeGraphViewModel(IGraphService graphService)
         {
-            IncomePlot = new PlotModel();
+            _graphService = graphService;
+            IncomePlot = _graphService.WorkingPlotModel;
 
             SetUpModel();
 
@@ -29,20 +31,11 @@ namespace Budget5000.Graph.ViewModels
         }
 
         private void SetUpModel()
-        {
-            IncomePlot.LegendTitle = "Legend";
-            IncomePlot.LegendOrientation = LegendOrientation.Horizontal;
-            IncomePlot.LegendPlacement = LegendPlacement.Outside;
-            IncomePlot.LegendPosition = LegendPosition.TopRight;
-            IncomePlot.LegendBackground = OxyColor.FromAColor(200, OxyColors.White);
-            IncomePlot.LegendBorder = OxyColors.Black;
-
-
+        {            
             var dateAxis = new DateTimeAxis()
             {
                 MajorGridlineStyle = LineStyle.Solid,
                 MinorGridlineStyle = LineStyle.Dot,
-                IntervalLength = 80
             };
             IncomePlot.Axes.Add(dateAxis);
             var valueAxis = new LinearAxis()
@@ -69,7 +62,6 @@ namespace Budget5000.Graph.ViewModels
                     MarkerSize = 3,
                     MarkerStroke = colors[data.Key],
                     MarkerType = markerTypes[data.Key],
-                    CanTrackerInterpolatePoints = false,
                     Title = string.Format("Detector {0}", data.Key),
                     Smooth = false,
                 };
@@ -98,7 +90,6 @@ namespace Budget5000.Graph.ViewModels
                                                         MarkerType.Triangle,
                                                         MarkerType.Cross
                                                     };
-
-
+        private IGraphService _graphService;
     }
 }

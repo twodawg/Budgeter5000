@@ -1,5 +1,6 @@
 ﻿using Budget5000.Infrastructure.Interface;
 using Budget5000.Infrastructure.Model;
+using Budget5000.Service.Service;
 using Fonet;
 using Fonet.Render.Pdf;
 using Prism.Commands;
@@ -17,10 +18,13 @@ namespace Budget5000.Report.ViewModels
     public class IncomeStatementViewModel : BindableBase
     {
         private ITransactionService _TransactionService;
+        private IGraphService _GraphService;
 
-        public IncomeStatementViewModel(ITransactionService transactionService)
+        public IncomeStatementViewModel(ITransactionService transactionService, IGraphService graphService)
         {
             _TransactionService = transactionService;
+            _GraphService = graphService;
+
             PrintIncomeReport = new DelegateCommand(OnPrintIncomeReport);
             PrintSampleReport = new DelegateCommand(OnPrintSampleReport);
         }
@@ -129,6 +133,8 @@ namespace Budget5000.Report.ViewModels
             var incomeStatement = new IncomeStatement();
             incomeStatement.Transactions = _TransactionService.WorkingTransactions
                 .Where(q => q.AccountID >= 400).ToList();
+            
+
             return incomeStatement;
         }
                 

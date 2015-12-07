@@ -24,6 +24,9 @@ namespace Budget5000.Service
 
             var transactionService = new TransactionService();
             _Container.RegisterInstance<ITransactionService>(transactionService, new ContainerControlledLifetimeManager());
+
+            var graphService = new GraphService();
+            _Container.RegisterInstance<IGraphService>(graphService, new ContainerControlledLifetimeManager());
         }
     }
 }
