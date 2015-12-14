@@ -10,6 +10,7 @@ namespace Budget5000.Infrastructure.Interface
 {
     public interface ITransactionService
     {
+        event EventHandler<ObservableCollection<Transaction>> Updated;
         ObservableCollection<Transaction> WorkingTransactions { get; set; }
 
         ObservableCollection<Transaction> GetTransactions();

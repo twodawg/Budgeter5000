@@ -4,6 +4,7 @@ using Budget5000.Service.Utility;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,13 +15,19 @@ namespace Budget5000.Service.Service
 {
     public class TransactionService : ITransactionService
     {
-        private DataManager _DataManager;
-        public ObservableCollection<Transaction> WorkingTransactions { get; set; }
-
         public TransactionService()
         {
             _DataManager = new DataManager();
+
             WorkingTransactions = _DataManager.LoadRecords();
+            WorkingTransactions.CollectionChanged += WorkingTransactions_CollectionChanged;
+        }
+
+        public ObservableCollection<Transaction> WorkingTransactions { get; set; }
+        public event EventHandler<ObservableCollection<Transaction>> Updated = delegate { };
+        private void WorkingTransactions_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Updated(this, WorkingTransactions);
         }
 
         public ObservableCollection<Transaction> GetTransactions()
@@ -31,6 +38,8 @@ namespace Budget5000.Service.Service
         public void SaveTransactions()
         {
             _DataManager.SaveRecords(WorkingTransactions);
-        }        
+        }
+
+        private DataManager _DataManager;
     }
 }

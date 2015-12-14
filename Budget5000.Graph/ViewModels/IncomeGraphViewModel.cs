@@ -1,23 +1,85 @@
-﻿using Budget5000.Service.Service;
+﻿using Budget5000.Infrastructure.Interface;
+using Budget5000.Service.Service;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using Prism.Mvvm;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using Budget5000.Infrastructure.Model;
+using System;
 
 namespace Budget5000.Graph.ViewModels
 {
     public class IncomeGraphViewModel : BindableBase
     {
-        public IncomeGraphViewModel(IGraphService graphService)
+        public IncomeGraphViewModel(IGraphService graphService, ITransactionService transactionService)
         {
-            _graphService = graphService;
-            IncomePlot = _graphService.WorkingPlotModel;
+            _GraphService = graphService;
+            _TransactionService = transactionService;
 
-            SetUpModel();
+            IncomePlot = _GraphService.WorkingPlotModel;
+            _TransactionService.Updated += _TransactionService_Updated;
 
-            LoadData();
+            DrawGraph(_TransactionService.WorkingTransactions);
+        }
+
+        private void _TransactionService_Updated(object sender, ObservableCollection<Transaction> e)
+        {
+            DrawGraph(e);
+        }
+
+        private void DrawGraph(ObservableCollection<Transaction> transactions)
+        {
+            ClearGraph();
+
+            AddAxis(transactions);
+
+            AddSeries(transactions);
+        }
+
+        private void AddSeries(ObservableCollection<Transaction> transactions)
+        {
+            foreach (var data in transactions.Where(q => q.AccountID >= 400))
+            {
+                var lineSeries = new LineSeries
+                {
+                    StrokeThickness = 2,
+                    MarkerSize = 3,
+                    MarkerStroke = colors[0],
+                    MarkerType = markerTypes[0],
+                    Title = "Transaction",
+                    Smooth = false,
+                };
+                lineSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp), 
+                    double.Parse(data.Amount.ToString())));
+                IncomePlot.Series.Add(lineSeries);
+            }
+        }
+
+        private void AddAxis(ObservableCollection<Transaction> transactions)
+        {
+            var dateAxis = new DateTimeAxis()
+            {
+                MajorGridlineStyle = LineStyle.Solid,
+                MinorGridlineStyle = LineStyle.Dot,
+            };
+            IncomePlot.Axes.Add(dateAxis);
+            var valueAxis = new LinearAxis()
+            {
+                MajorGridlineStyle = LineStyle.Solid,
+                MinorGridlineStyle = LineStyle.Dot,
+                Title = "Amount"
+            };
+            IncomePlot.Axes.Add(valueAxis);
+        }
+
+        private void ClearGraph()
+        {
+            IncomePlot.Axes.Clear();
+            IncomePlot.Series.Clear();
+            IncomePlot.Annotations.Clear();
         }
 
         private PlotModel _IncomePlot;
@@ -29,49 +91,7 @@ namespace Budget5000.Graph.ViewModels
                 SetProperty(ref _IncomePlot, value);
             }
         }
-
-        private void SetUpModel()
-        {            
-            var dateAxis = new DateTimeAxis()
-            {
-                MajorGridlineStyle = LineStyle.Solid,
-                MinorGridlineStyle = LineStyle.Dot,
-            };
-            IncomePlot.Axes.Add(dateAxis);
-            var valueAxis = new LinearAxis()
-            {
-                MajorGridlineStyle = LineStyle.Solid,
-                MinorGridlineStyle = LineStyle.Dot,
-                Title = "Value"
-            };
-            IncomePlot.Axes.Add(valueAxis);
-        }
-        private void LoadData()
-        {
-            List<Measurement> measurements = Data.GetData();
-
-
-            var dataPerDetector = measurements.GroupBy(m => m.DetectorId).ToList();
-
-
-            foreach (var data in dataPerDetector)
-            {
-                var lineSerie = new LineSeries
-                {
-                    StrokeThickness = 2,
-                    MarkerSize = 3,
-                    MarkerStroke = colors[data.Key],
-                    MarkerType = markerTypes[data.Key],
-                    Title = string.Format("Detector {0}", data.Key),
-                    Smooth = false,
-                };
-
-
-                data.ToList().ForEach(d => lineSerie.Points.Add(new DataPoint(DateTimeAxis.ToDouble(d.DateTime), d.Value)));
-                IncomePlot.Series.Add(lineSerie);
-            }
-
-        }
+       
         private readonly List<OxyColor> colors = new List<OxyColor>
                                              {
                                                  OxyColors.Green,
@@ -90,6 +110,7 @@ namespace Budget5000.Graph.ViewModels
                                                         MarkerType.Triangle,
                                                         MarkerType.Cross
                                                     };
-        private IGraphService _graphService;
+        private IGraphService _GraphService;
+        private ITransactionService _TransactionService;
     }
 }
