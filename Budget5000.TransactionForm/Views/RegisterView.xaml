@@ -42,17 +42,17 @@
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <DatePicker SelectedDate="{Binding TimeStamp}" />
+                            <DatePicker SelectedDate="{Binding TimeStamp, UpdateSourceTrigger=LostFocus}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Description" Binding="{Binding Description}" MinWidth="150"/>
-                <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Description, UpdateSourceTrigger=LostFocus}" MinWidth="150"/>
+                <DataGridTextColumn Header="Amount" Binding="{Binding Amount, UpdateSourceTrigger=LostFocus}"/>
                 <DataGridTemplateColumn Header="Account Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox ItemsSource="{Binding Path=DataContext.AccountList,
-                                RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}}"
+                                RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, UpdateSourceTrigger=LostFocus}"
                                                       DisplayMemberPath="Description"
                                                       SelectedValue="{Binding AccountID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                       SelectedValuePath="ID"/>
@@ -62,8 +62,8 @@
                                 
                 <DataGridComboBoxColumn Header="Type"  SelectedItemBinding="{Binding Type}" 
                                         ItemsSource="{Binding Source={StaticResource typeEnum}}" />
+                <DataGridTextColumn Header="Repeat After # Days" Binding="{Binding RepeatAfterDays, UpdateSourceTrigger=LostFocus}"/>
 
-                
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

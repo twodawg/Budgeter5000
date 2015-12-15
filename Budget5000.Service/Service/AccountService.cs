@@ -37,6 +37,7 @@ namespace Budget5000.Service.Service
                 new Account() { ID=405, Type=AccountType.INCOME, Description="Rental Income" },
                 new Account() { ID=500, Type=AccountType.COSTOFGOODS, Description="Cost" },
                 new Account() { ID=600, Type=AccountType.EXPENSE, Description="Mortgage Bill" },
+                new Account() { ID=610, Type=AccountType.EXPENSE, Description="Rental Mortgage Bill" },
                 new Account() { ID=601, Type=AccountType.EXPENSE, Description="Credit Card" },
                 new Account() { ID=602, Type=AccountType.EXPENSE, Description="Loan Payment" },
                 new Account() { ID=603, Type=AccountType.EXPENSE, Description="Retail Maintenance" },

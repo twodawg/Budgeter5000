@@ -41,7 +41,8 @@ namespace Budget5000.Graph.ViewModels
 
         private void AddSeries(ObservableCollection<Transaction> transactions)
         {
-            foreach (var data in transactions.Where(q => q.AccountID >= 400))
+            // Income
+            foreach (var data in transactions.Where(q => q.AccountID >= 400 && q.AccountID < 500))
             {
                 var lineSeries = new LineSeries
                 {
@@ -49,13 +50,26 @@ namespace Budget5000.Graph.ViewModels
                     MarkerSize = 3,
                     MarkerStroke = colors[0],
                     MarkerType = markerTypes[0],
-                    Title = "Transaction",
+                    Title = data.Description,
                     Smooth = false,
                 };
                 lineSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp), 
                     double.Parse(data.Amount.ToString())));
                 IncomePlot.Series.Add(lineSeries);
             }
+            // Expense
+            //foreach (var data in transactions.Where(q => q.AccountID >= 500))
+            //{
+            //    var barSeries = new BarSeries
+            //    {
+            //        StrokeThickness = 2,
+            //        FillColor = colors[0],
+            //        Title = data.Description,
+            //    };
+
+            //    barSeries.Items.Add(new BarItem(double.Parse((-data.Amount).ToString())));
+            //    IncomePlot.Series.Add(barSeries);
+            //}
         }
 
         private void AddAxis(ObservableCollection<Transaction> transactions)
@@ -73,6 +87,11 @@ namespace Budget5000.Graph.ViewModels
                 Title = "Amount"
             };
             IncomePlot.Axes.Add(valueAxis);
+            var categoryAxis = new CategoryAxis()
+            {
+                Position = AxisPosition.Bottom,
+            };
+            IncomePlot.Axes.Add(categoryAxis);
         }
 
         private void ClearGraph()
