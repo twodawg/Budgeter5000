@@ -55,16 +55,7 @@ namespace Budget5000.TransactionForm.ViewModels
                 SetProperty(ref _SelectedRecord, value);
             }
         }
-
-        private void Records_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-            {
-                var trans = e.NewItems[0] as Transaction;
-                trans.ID = Guid.NewGuid();
-                trans.TimeStamp = DateTime.Now;
-            }
-        }
+        
         
         public List<Account> AccountList
         {
@@ -84,17 +75,13 @@ namespace Budget5000.TransactionForm.ViewModels
                 Records = new ObservableCollection<Transaction>(
                     _TransactionService.GetTransactions()
                     .Where(q => q.AccountID == value.ID));
-
-                Records.CollectionChanged += Records_CollectionChanged;
             }
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             Records = _TransactionService.GetTransactions();
-            Records.CollectionChanged += Records_CollectionChanged;
         }
-
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {

@@ -44,32 +44,30 @@ namespace Budget5000.Graph.ViewModels
             // Income
             foreach (var data in transactions.Where(q => q.AccountID >= 400 && q.AccountID < 500))
             {
-                var lineSeries = new LineSeries
+                var barSeries = new LinearBarSeries
                 {
-                    StrokeThickness = 2,
-                    MarkerSize = 3,
-                    MarkerStroke = colors[0],
-                    MarkerType = markerTypes[0],
+                    StrokeThickness = 1,
+                    FillColor = OxyColors.Green,
                     Title = data.Description,
-                    Smooth = false,
                 };
-                lineSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp), 
+                barSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp),
                     double.Parse(data.Amount.ToString())));
-                IncomePlot.Series.Add(lineSeries);
+                IncomePlot.Series.Add(barSeries);
             }
             // Expense
-            //foreach (var data in transactions.Where(q => q.AccountID >= 500))
-            //{
-            //    var barSeries = new BarSeries
-            //    {
-            //        StrokeThickness = 2,
-            //        FillColor = colors[0],
-            //        Title = data.Description,
-            //    };
+            foreach (var data in transactions.Where(q => q.AccountID >= 500))
+            {
+                var barSeries = new LinearBarSeries
+                {
+                    StrokeThickness = 1,
+                    FillColor = OxyColors.IndianRed,
+                    Title = data.Description,
+                };
 
-            //    barSeries.Items.Add(new BarItem(double.Parse((-data.Amount).ToString())));
-            //    IncomePlot.Series.Add(barSeries);
-            //}
+                barSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp), 
+                    double.Parse((-data.Amount).ToString())));
+                IncomePlot.Series.Add(barSeries);
+            }
         }
 
         private void AddAxis(ObservableCollection<Transaction> transactions)
@@ -87,11 +85,6 @@ namespace Budget5000.Graph.ViewModels
                 Title = "Amount"
             };
             IncomePlot.Axes.Add(valueAxis);
-            var categoryAxis = new CategoryAxis()
-            {
-                Position = AxisPosition.Bottom,
-            };
-            IncomePlot.Axes.Add(categoryAxis);
         }
 
         private void ClearGraph()
@@ -110,25 +103,7 @@ namespace Budget5000.Graph.ViewModels
                 SetProperty(ref _IncomePlot, value);
             }
         }
-       
-        private readonly List<OxyColor> colors = new List<OxyColor>
-                                             {
-                                                 OxyColors.Green,
-                                                 OxyColors.IndianRed,
-                                                 OxyColors.Coral,
-                                                 OxyColors.Chartreuse,
-                                                 OxyColors.Azure
-                                             };
 
-
-        private readonly List<MarkerType> markerTypes = new List<MarkerType>
-                                                    {
-                                                        MarkerType.Plus,
-                                                        MarkerType.Star,
-                                                        MarkerType.Diamond,
-                                                        MarkerType.Triangle,
-                                                        MarkerType.Cross
-                                                    };
         private IGraphService _GraphService;
         private ITransactionService _TransactionService;
     }
