@@ -1,4 +1,5 @@
-﻿using Budget5000.Graph.Views;
+﻿using Budget5000.Graph.ViewModels;
+using Budget5000.Graph.Views;
 using Budget5000.Infrastructure;
 using Microsoft.Practices.Unity;
 using Prism.Modularity;
@@ -24,6 +25,7 @@ namespace Budget5000.Graph
 
             _Container.RegisterType<Object, IncomeGraphView>(nameof(IncomeGraphView));
 
+            var graph = _Container.Resolve<IncomeGraphViewModel>();
         }
     }
 }

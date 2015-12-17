@@ -40,10 +40,21 @@
         </fo:static-content>
         <!--BODY-->
         <fo:flow flow-name="xsl-region-body">
-          <fo:block>
+          <fo:block font-size="14pt">
             All Income and Expense Transactions
           </fo:block>
-          <xsl:call-template name="Transaction"/>          
+          <xsl:call-template name="Transaction"/>
+          <fo:block space-after="1cm"></fo:block>
+          <fo:block font-size="14pt">
+            Income Statement Graph
+          </fo:block>
+          <fo:block>
+            <fo:external-graphic>
+              <xsl:attribute name="src">
+                <xsl:value-of select="IncomeStatementImage"/>
+              </xsl:attribute>
+            </fo:external-graphic>
+          </fo:block>
         </fo:flow>
       </fo:page-sequence>
     </fo:root>

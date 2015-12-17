@@ -7,9 +7,13 @@ using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Unity;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using Budget5000.Graph;
 using Budget5000.Report;
+using Budget5000.Graph.Views;
+using Budget5000.Graph.ViewModels;
 
 namespace Budget5000
 {

@@ -10,5 +10,6 @@ namespace Budget5000.Infrastructure.Model
     public class IncomeStatement
     {
         public List<Transaction> Transactions { get; set; }
+        public string IncomeStatementImage { get; set; }
     }
 }

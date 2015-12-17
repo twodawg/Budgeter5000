@@ -37,6 +37,8 @@ namespace Budget5000.Graph.ViewModels
             AddAxis(transactions);
 
             AddSeries(transactions);
+
+            IncomePlot.InvalidatePlot(true);
         }
 
         private void AddSeries(ObservableCollection<Transaction> transactions)
@@ -76,6 +78,7 @@ namespace Budget5000.Graph.ViewModels
             {
                 MajorGridlineStyle = LineStyle.Solid,
                 MinorGridlineStyle = LineStyle.Dot,
+                Angle = -45,
             };
             IncomePlot.Axes.Add(dateAxis);
             var valueAxis = new LinearAxis()

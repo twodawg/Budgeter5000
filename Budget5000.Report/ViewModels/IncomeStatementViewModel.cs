@@ -3,6 +3,7 @@ using Budget5000.Infrastructure.Model;
 using Budget5000.Service.Service;
 using Fonet;
 using Fonet.Render.Pdf;
+using OxyPlot.Wpf;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -71,7 +72,7 @@ namespace Budget5000.Report.ViewModels
                 reportDataMemoryStream.Position = 0;
                 reportDataXmlReader = XmlReader.Create(reportDataMemoryStream);
 
-                string foxslPath = @"Templates\IncomeReport.xsl";                
+                string foxslPath = @"Templates\IncomeReport.xsl";
                 var xslt = new XslCompiledTransform();
                 xslt.Load(foxslPath);
 
@@ -133,11 +134,22 @@ namespace Budget5000.Report.ViewModels
             var incomeStatement = new IncomeStatement();
             incomeStatement.Transactions = _TransactionService.WorkingTransactions
                 .Where(q => q.AccountID >= 400).ToList();
-            
+
+            incomeStatement.IncomeStatementImage = CreateIncomeGraph();
 
             return incomeStatement;
         }
-                
+
+        private string CreateIncomeGraph()
+        {
+            var filePath = BuildFilePath("Income.png");
+            using (var fileStream = File.Create(filePath))
+            {
+                new PngExporter().Export(_GraphService.WorkingPlotModel, fileStream);
+            }
+            return filePath;
+        }
+
         void FonetError(object Driver, FonetEventArgs e)
         {
             const string LogName = "Application";
