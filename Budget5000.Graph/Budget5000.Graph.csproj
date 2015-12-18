@@ -87,7 +87,6 @@
   <ItemGroup>
     <Compile Include="GraphModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Data.cs" />
     <Compile Include="ViewModels\IncomeGraphViewModel.cs" />
     <Compile Include="Views\IncomeGraphNavigationView.xaml.cs">
       <DependentUpon>IncomeGraphNavigationView.xaml</DependentUpon>
