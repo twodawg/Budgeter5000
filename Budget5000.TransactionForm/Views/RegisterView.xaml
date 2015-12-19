@@ -18,6 +18,11 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding SaveAllCommand}" Gesture="ALT+S"/>
+        <KeyBinding Command="{Binding ExportCommand}" Gesture="ALT+E"/>
+        <KeyBinding Command="{Binding ImportCommand}" Gesture="ALT+I"/>
+    </UserControl.InputBindings>
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,7 +30,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Command="{Binding SaveAllCommand}" Content="Save" Margin="2"/> 
+            <Button Command="{Binding SaveAllCommand}" Content="_Save" Margin="2"/>
+            <Button Command="{Binding ImportCommand}" Content="_Import" Margin="2"/>
+            <Button Command="{Binding ExportCommand}" Content="_Export" Margin="2"/>
         </StackPanel>
         <GroupBox Grid.Row="1" Header="Filters">
             <StackPanel Orientation="Horizontal">
