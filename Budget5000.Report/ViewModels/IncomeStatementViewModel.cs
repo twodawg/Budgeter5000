@@ -36,7 +36,7 @@ namespace Budget5000.Report.ViewModels
 
             string foxslPath = @"Templates\hello.fo";
             FonetDriver driver = FonetDriver.Make();
-            driver.OnError += new FonetDriver.FonetEventHandler(FonetError);
+            driver.OnError += FonetError;
             driver.Render(foxslPath, reportLocation);
 
             Process.Start(reportLocation);
@@ -90,7 +90,7 @@ namespace Budget5000.Report.ViewModels
         {
             // https://fonet.codeplex.com
             FonetDriver driver = FonetDriver.Make();
-            driver.OnError += new FonetDriver.FonetEventHandler(FonetError);
+            driver.OnError += FonetError;
             driver.Options = IncomeStatementRenderOptions();
             try
             {
@@ -124,7 +124,7 @@ namespace Budget5000.Report.ViewModels
         {
             reportDataMemoryStream.Position = 0;
             string xml = new StreamReader(reportDataMemoryStream).ReadToEnd();
-            XmlDocument oXML = new XmlDocument();
+            var oXML = new XmlDocument();
             oXML.LoadXml(xml);
             oXML.Save(BuildFilePath("IncomeStatementReport.xml"));
         }
@@ -154,7 +154,7 @@ namespace Budget5000.Report.ViewModels
         {
             const string LogName = "Application";
             // Insert into Event Log
-            EventLog Log = new EventLog();
+            var Log = new EventLog();
             Log.Source = LogName;
             Log.WriteEntry(e.GetMessage(), EventLogEntryType.Error);
         }

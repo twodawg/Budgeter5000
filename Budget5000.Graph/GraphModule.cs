@@ -10,8 +10,8 @@ namespace Budget5000.Graph
 {
     public class GraphModule : IModule
     {
-        private IUnityContainer _Container;
-        private IRegionManager _RegionManager;
+        readonly IUnityContainer _Container;
+        readonly IRegionManager _RegionManager;
 
         public GraphModule(IUnityContainer container, IRegionManager regionManager)
         {

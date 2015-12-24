@@ -13,8 +13,8 @@ namespace Budget5000.Service.Utility
     public class DataManager
     {
         string Folder;
-        string File;
-        string HomeDirectory;
+        readonly string File;
+        readonly string HomeDirectory;
 
         public DataManager()
         {

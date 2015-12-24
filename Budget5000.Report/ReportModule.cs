@@ -13,8 +13,8 @@ namespace Budget5000.Report
 {
     public class ReportModule : IModule
     {
-        private IUnityContainer _Container;
-        private IRegionManager _RegionManager;
+        readonly IUnityContainer _Container;
+        readonly IRegionManager _RegionManager;
 
         public ReportModule(IUnityContainer container, IRegionManager regionManager)
         {

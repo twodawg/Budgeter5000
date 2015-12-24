@@ -1,14 +1,12 @@
 ﻿using Budget5000.Infrastructure.Interface;
+using Budget5000.Infrastructure.Model;
 using Budget5000.Service.Service;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using Prism.Mvvm;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Budget5000.Infrastructure.Model;
-using System;
 
 namespace Budget5000.Graph.ViewModels
 {
@@ -50,7 +48,7 @@ namespace Budget5000.Graph.ViewModels
                 {
                     StrokeThickness = 1,
                     FillColor = OxyColors.Green,
-                    Title = data.Description,
+                    Title = data.Description
                 };
                 barSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp),
                     double.Parse(data.Amount.ToString())));
@@ -63,10 +61,10 @@ namespace Budget5000.Graph.ViewModels
                 {
                     StrokeThickness = 1,
                     FillColor = OxyColors.IndianRed,
-                    Title = data.Description,
+                    Title = data.Description
                 };
 
-                barSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp), 
+                barSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp),
                     double.Parse((-data.Amount).ToString())));
                 IncomePlot.Series.Add(barSeries);
             }
@@ -74,14 +72,14 @@ namespace Budget5000.Graph.ViewModels
 
         private void AddAxis(ObservableCollection<Transaction> transactions)
         {
-            var dateAxis = new DateTimeAxis()
+            var dateAxis = new DateTimeAxis
             {
                 MajorGridlineStyle = LineStyle.Solid,
                 MinorGridlineStyle = LineStyle.Dot,
-                Angle = -45,
+                Angle = -45
             };
             IncomePlot.Axes.Add(dateAxis);
-            var valueAxis = new LinearAxis()
+            var valueAxis = new LinearAxis
             {
                 MajorGridlineStyle = LineStyle.Solid,
                 MinorGridlineStyle = LineStyle.Dot,

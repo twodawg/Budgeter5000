@@ -8,11 +8,9 @@ using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace Budget5000.TransactionForm.ViewModels
 {
@@ -36,7 +34,7 @@ namespace Budget5000.TransactionForm.ViewModels
 
         private void OnImport()
         {
-            throw new NotImplementedException();
+
         }
 
         private void OnExport()
@@ -54,7 +52,7 @@ namespace Budget5000.TransactionForm.ViewModels
 
         private XSSFWorkbook GetRegisterData()
         {
-            XSSFWorkbook workbook = new XSSFWorkbook();
+            var workbook = new XSSFWorkbook();
             ISheet sheet = workbook.CreateSheet("Register Transactions");
 
             var row = sheet.CreateRow(0);
@@ -117,8 +115,8 @@ namespace Budget5000.TransactionForm.ViewModels
                 SetProperty(ref _SelectedRecord, value);
             }
         }
-        
-        
+
+
         public List<Account> AccountList
         {
             get

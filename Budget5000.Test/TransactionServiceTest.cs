@@ -15,10 +15,10 @@ namespace Budget5000.Test
             var transData = transactionService.GetTransactions();
             var transCount = transData.Count;
 
-            transData.Add(new Transaction()
+            transData.Add(new Transaction
             {
                 Description = "Test Transaction",
-                TimeStamp = DateTime.Now,
+                TimeStamp = DateTime.Now
             });
 
             Assert.AreEqual(++transCount, transData.Count);

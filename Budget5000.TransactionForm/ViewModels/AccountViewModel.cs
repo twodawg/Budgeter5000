@@ -2,14 +2,13 @@
 using Budget5000.Infrastructure.Model;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
 using System.Collections.ObjectModel;
 
 namespace Budget5000.TransactionForm.ViewModels
 {
     public class AccountViewModel : BindableBase, INavigationAware
     {
-        private IAccountService _AccountService;
+        readonly IAccountService _AccountService;
 
         public AccountViewModel(IAccountService accountservice)
         {

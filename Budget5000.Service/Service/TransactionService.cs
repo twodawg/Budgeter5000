@@ -2,14 +2,8 @@
 using Budget5000.Infrastructure.Model;
 using Budget5000.Service.Utility;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace Budget5000.Service.Service
 {
@@ -22,7 +16,7 @@ namespace Budget5000.Service.Service
             WorkingTransactions = _DataManager.LoadRecords();
             WorkingTransactions.CollectionChanged += WorkingTransactions_CollectionChanged;
 
-            foreach(var trans in WorkingTransactions)
+            foreach (var trans in WorkingTransactions)
             {
                 trans.PropertyChanged += Trans_PropertyChanged;
             }
@@ -42,7 +36,7 @@ namespace Budget5000.Service.Service
         }
 
         private void Trans_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {            
+        {
             Updated(this, WorkingTransactions);
         }
 
@@ -56,6 +50,6 @@ namespace Budget5000.Service.Service
             _DataManager.SaveRecords(WorkingTransactions);
         }
 
-        private DataManager _DataManager;
+        readonly DataManager _DataManager;
     }
 }

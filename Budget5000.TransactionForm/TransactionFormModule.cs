@@ -9,8 +9,8 @@ namespace Budget5000.TransactionForm
 {
     public class TransactionFormModule : IModule
     {
-        private IUnityContainer _Container;
-        private IRegionManager _RegionManager;
+        readonly IUnityContainer _Container;
+        readonly IRegionManager _RegionManager;
 
         public TransactionFormModule(IUnityContainer container, IRegionManager regionManager)
         {

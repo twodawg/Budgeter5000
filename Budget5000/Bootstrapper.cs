@@ -33,7 +33,7 @@ namespace Budget5000
         {
             base.ConfigureModuleCatalog();
 
-            ModuleCatalog moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
+            var moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
 
             // Add all of the modules here
             moduleCatalog.AddModule(typeof(ServiceModule));

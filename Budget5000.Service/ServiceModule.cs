@@ -8,7 +8,7 @@ namespace Budget5000.Service
 {
     public class ServiceModule : IModule
     {
-        private IUnityContainer _Container;
+        readonly IUnityContainer _Container;
         private IRegionManager _RegionManager;
 
         public ServiceModule(IUnityContainer container, IRegionManager regionManager)
