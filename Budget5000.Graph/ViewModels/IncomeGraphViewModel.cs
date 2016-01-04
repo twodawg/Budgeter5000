@@ -12,23 +12,31 @@ namespace Budget5000.Graph.ViewModels
 {
     public class IncomeGraphViewModel : BindableBase
     {
-        public IncomeGraphViewModel(IGraphService graphService, ITransactionService transactionService)
+        public IncomeGraphViewModel(IGraphService graphService,
+            ITransactionService transactionService)
         {
             _GraphService = graphService;
             _TransactionService = transactionService;
+            Initalize();
+        }
+        // Public Methods
 
+
+        // Private Methods
+        void Initalize()
+        {
             IncomePlot = _GraphService.WorkingPlotModel;
             _TransactionService.Updated += _TransactionService_Updated;
 
             DrawGraph(_TransactionService.WorkingTransactions);
         }
 
-        private void _TransactionService_Updated(object sender, ObservableCollection<Transaction> e)
+        void _TransactionService_Updated(object sender, ObservableCollection<Transaction> e)
         {
             DrawGraph(e);
         }
 
-        private void DrawGraph(ObservableCollection<Transaction> transactions)
+        void DrawGraph(ObservableCollection<Transaction> transactions)
         {
             ClearGraph();
 
@@ -39,7 +47,7 @@ namespace Budget5000.Graph.ViewModels
             IncomePlot.InvalidatePlot(true);
         }
 
-        private void AddSeries(ObservableCollection<Transaction> transactions)
+        void AddSeries(ObservableCollection<Transaction> transactions)
         {
             // Income
             foreach (var data in transactions.Where(q => q.AccountID >= 400 && q.AccountID < 500))
@@ -70,7 +78,7 @@ namespace Budget5000.Graph.ViewModels
             }
         }
 
-        private void AddAxis(ObservableCollection<Transaction> transactions)
+        void AddAxis(ObservableCollection<Transaction> transactions)
         {
             var dateAxis = new DateTimeAxis
             {
@@ -88,14 +96,15 @@ namespace Budget5000.Graph.ViewModels
             IncomePlot.Axes.Add(valueAxis);
         }
 
-        private void ClearGraph()
+        void ClearGraph()
         {
             IncomePlot.Axes.Clear();
             IncomePlot.Series.Clear();
             IncomePlot.Annotations.Clear();
         }
 
-        private PlotModel _IncomePlot;
+        // Properties
+        PlotModel _IncomePlot;
         public PlotModel IncomePlot
         {
             get { return _IncomePlot; }
@@ -105,7 +114,8 @@ namespace Budget5000.Graph.ViewModels
             }
         }
 
-        private IGraphService _GraphService;
-        private ITransactionService _TransactionService;
+        // Private fields
+        IGraphService _GraphService;
+        ITransactionService _TransactionService;
     }
 }
