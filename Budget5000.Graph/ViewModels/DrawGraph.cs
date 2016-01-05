@@ -2,18 +2,15 @@
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Budget5000.Graph.ViewModels
 {
     public static class DrawGraph
     {
-        public static void Draw(PlotModel IncomePlot, ObservableCollection<Transaction> transactions)
+        public static void Draw(PlotModel IncomePlot, 
+            ObservableCollection<Transaction> transactions)
         {
             ClearGraph(IncomePlot);
 
@@ -29,7 +26,8 @@ namespace Budget5000.Graph.ViewModels
             IncomePlot.Series.Clear();
             IncomePlot.Annotations.Clear();
         }
-        static void AddAxis(PlotModel IncomePlot, ObservableCollection<Transaction> transactions)
+        static void AddAxis(PlotModel IncomePlot, 
+            ObservableCollection<Transaction> transactions)
         {
             var dateAxis = new DateTimeAxis
             {
@@ -46,10 +44,12 @@ namespace Budget5000.Graph.ViewModels
             };
             IncomePlot.Axes.Add(valueAxis);
         }
-        static void AddSeries(PlotModel IncomePlot, ObservableCollection<Transaction> transactions)
+        static void AddSeries(PlotModel IncomePlot, 
+            ObservableCollection<Transaction> transactions)
         {
             // Income
-            foreach (var data in transactions.Where(q => q.AccountID >= 400 && q.AccountID < 500))
+            foreach (var data in transactions.Where(q => q.AccountID >= 400 && 
+            q.AccountID < 500))
             {
                 var barSeries = new LinearBarSeries
                 {
