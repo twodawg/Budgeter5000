@@ -14,12 +14,12 @@ namespace Budget5000.Graph.ViewModels
         {
             _GraphService = graphService;
             _TransactionService = transactionService;
-            Initalize();
+            Initialize();
         }
         // Public Methods
 
         // Private Methods
-        void Initalize()
+        void Initialize()
         {
             IncomePlot = _GraphService.WorkingPlotModel;
             _TransactionService.Updated += _TransactionService_Updated;
