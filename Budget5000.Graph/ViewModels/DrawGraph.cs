@@ -9,7 +9,7 @@ namespace Budget5000.Graph.ViewModels
 {
     public static class DrawGraph
     {
-        public static void Draw(PlotModel IncomePlot, 
+        public static void Draw(PlotModel IncomePlot,
             ObservableCollection<Transaction> transactions)
         {
             ClearGraph(IncomePlot);
@@ -24,9 +24,8 @@ namespace Budget5000.Graph.ViewModels
         {
             IncomePlot.Axes.Clear();
             IncomePlot.Series.Clear();
-            IncomePlot.Annotations.Clear();
         }
-        static void AddAxis(PlotModel IncomePlot, 
+        static void AddAxis(PlotModel IncomePlot,
             ObservableCollection<Transaction> transactions)
         {
             var dateAxis = new DateTimeAxis
@@ -44,11 +43,11 @@ namespace Budget5000.Graph.ViewModels
             };
             IncomePlot.Axes.Add(valueAxis);
         }
-        static void AddSeries(PlotModel IncomePlot, 
+        static void AddSeries(PlotModel IncomePlot,
             ObservableCollection<Transaction> transactions)
         {
             // Income
-            foreach (var data in transactions.Where(q => q.AccountID >= 400 && 
+            foreach (var data in transactions.Where(q => q.AccountID >= 400 &&
             q.AccountID < 500))
             {
                 var barSeries = new LinearBarSeries
@@ -70,7 +69,6 @@ namespace Budget5000.Graph.ViewModels
                     FillColor = OxyColors.IndianRed,
                     Title = data.Description
                 };
-
                 barSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp),
                     double.Parse((-data.Amount).ToString())));
                 IncomePlot.Series.Add(barSeries);
