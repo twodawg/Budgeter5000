@@ -24,6 +24,7 @@ namespace Budget5000.Service.Service
 
         public ObservableCollection<Transaction> WorkingTransactions { get; set; }
         public event EventHandler<ObservableCollection<Transaction>> Updated = delegate { };
+
         private void WorkingTransactions_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)

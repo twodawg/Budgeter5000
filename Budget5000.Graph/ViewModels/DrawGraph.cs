@@ -4,6 +4,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System;
 
 namespace Budget5000.Graph.ViewModels
 {
@@ -50,29 +51,28 @@ namespace Budget5000.Graph.ViewModels
             foreach (var data in transactions.Where(q => q.AccountID >= 400 &&
             q.AccountID < 500))
             {
-                var barSeries = new LinearBarSeries
-                {
-                    StrokeThickness = 1,
-                    FillColor = OxyColors.Green,
-                    Title = data.Description
-                };
-                barSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp),
-                    double.Parse(data.Amount.ToString())));
-                IncomePlot.Series.Add(barSeries);
+                SetPlotData(IncomePlot, data, OxyColors.Green, 1);
             }
             // Expense
             foreach (var data in transactions.Where(q => q.AccountID >= 500))
             {
-                var barSeries = new LinearBarSeries
-                {
-                    StrokeThickness = 1,
-                    FillColor = OxyColors.IndianRed,
-                    Title = data.Description
-                };
-                barSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp),
-                    double.Parse((-data.Amount).ToString())));
-                IncomePlot.Series.Add(barSeries);
+                SetPlotData(IncomePlot, data, OxyColors.IndianRed, -1);
             }
+        }
+        
+
+        private static void SetPlotData(PlotModel IncomePlot, 
+            Transaction data, OxyColor barColor, int number)
+        {
+            var barSeries = new LinearBarSeries
+            {
+                StrokeThickness = 1,
+                FillColor = barColor,
+                Title = data.Description
+            };
+            barSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(data.TimeStamp),
+                double.Parse((number * data.Amount).ToString())));
+            IncomePlot.Series.Add(barSeries);
         }
     }
 }

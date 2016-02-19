@@ -1,11 +1,11 @@
-﻿using Budget5000.Service;
+﻿using Budget5000.Graph;
+using Budget5000.Report;
+using Budget5000.Service;
 using Budget5000.TransactionForm;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Modularity;
 using Prism.Unity;
 using System.Windows;
-using Budget5000.Graph;
-using Budget5000.Report;
 
 namespace Budget5000
 {
@@ -28,7 +28,7 @@ namespace Budget5000
         {
             base.ConfigureContainer();
         }
-        
+
         protected override void ConfigureModuleCatalog()
         {
             base.ConfigureModuleCatalog();
